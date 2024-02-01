@@ -6,6 +6,9 @@ const app = Vue.createApp({
     };
   },
   methods: {
+    
+  },
+  computed:{
     getCounterResult() {
       console.log("Counter 1 Çalıştı");
       return this.counter > 5 ? "Büyük" : "Küçük";
@@ -15,12 +18,13 @@ const app = Vue.createApp({
       return this.counter2 > 5 ? "Büyük" : "Küçük";
     },
   },
-  // methods:{
-  //     inc(){
-  //         this.counter++;
-  //     },
-  //     dec(){
-  //         this.counter--;
-  //     },
-  // },
+  watch:{
+    counter(newValue,oldValue){
+      console.log("Counter", oldValue,"=>",newValue);
+    },
+    getCounterResult(newValue,oldValue){
+      console.log("Result", oldValue,"=>",newValue);
+    },
+  },
+
 }).mount("#app");
