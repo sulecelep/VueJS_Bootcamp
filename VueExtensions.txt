@@ -1,0 +1,2 @@
+eslint
+Vue Languages Features Volar veya Vetur ekleyebilirsin

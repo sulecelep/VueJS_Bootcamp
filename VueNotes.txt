@@ -75,3 +75,61 @@ TodoListteki döngüde v-model="todo.completed" olduğunda checked olunca true o
                 {{todo.text}}
               </label>
             </div>
+
+
+         ******************************************** HAFTA - 2 *********************************************************
+
+1- VueJS'de COMPONENT Yapısı
+
+-Tekrar edilen GUI parçaları (-Header,Footer,Ürün Kartı)
+-Fazla kod bloguna sahip GUI parçaları (Slider, banner gibi)
+
+* js dosyasında;
+app.component("appHeader",{options});
+
+buradaki options Vue instance'ları tanımlıyor. Örneğin, 
+-data(), methods, 
+-reactive propertyler(computed, watch)
+-LifeCycle Hooks (beforeCreate,created,beforeMount, mounted,befareUpdate,updated,beforeUnmount,unmounted)
+-Ve en önemlisi de template (Template bizim GUI parçaları yani HTML kodunu içerir)
+
+* html sayfasında;
+<appHeader/> ya da <appHeader></appHeader>
+
+2- COMPONENT Türleri
+2.1 String Template Component --> backtick'içinde kullanılacak template'i yazıyoruz. ancak bu karmaşık gösteriyor, kullanışlı değil.
+
+ÖRNEK: String Template Kullanımı
+app.component("counter-item", {
+  data() {
+    return {
+      counter: 0,
+    };
+  },
+  template: `
+      <div class="container-sm">
+        <h3 class="mb-2">{{counter}}</h3>
+        <button @click="counter--" class="red sm">-</button>
+        <button @click="counter++"class="green sm">+</button>
+      </div>
+  `,
+});
+
+
+
+2.2 Single File Component (SFC)
+
+
+Componentler Arası Veri İletişimi
+
+-Componentler kod tekrarını engelleyen, içerisinde HTML Kodları da bulunduran yapılardır. Yani belirli dinamiklere göre içeriği değişebilen yapılardır.
+-Bu durumda Componentlerin içeriğini değiştirmek için, onlara dışarıdan veri göndermemiz gerekir. Buna da veri iletişimi denir.
+-Vue ile Componentler arasındaki veri şletişimi birkaç yol ile yapılır:
+ * Parent >> Child(props)
+ * Child >> Parent(custom event)
+
+ Parent: içerisinde farklı farklı componentleri bulunduran component
+ Child: bir component içerisinde tanımlanmış / çağırılmış bir component
+
+
+
