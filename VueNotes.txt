@@ -131,5 +131,134 @@ Componentler Arası Veri İletişimi
  Parent: içerisinde farklı farklı componentleri bulunduran component
  Child: bir component içerisinde tanımlanmış / çağırılmış bir component
 
+Parent >> Child 
+<TodoList :myData="todoList"/>  //App.vue'dan TodoList componentine veri göndermek
+<TodoListItem v-for="todoItem in myData" :key="todoItem.id" :item="todoItem"/> //TodoList'ten TodoListItem'a veri göndermek
 
 
+Child >> Parent
+-Childdan Parenta veri gönderimi yaparken emit kullanıyoruz, bir event üretiyoruz.
+-Bu işlemin adına Custom Event Yöntemi denir.
+
+  AppVue:
+    <AddSection @add-todo="addNewTodo"/>
+    <TodoList @delete-todo-item="deleteItem" :myData="todoList"/>
+    <ResultBar :itemCount="todoList.length" />
+
+  AddSection:
+  <template>
+  <label for="todoText"></label>
+  <input v-model="todoText" @keydown.enter="addNewTodo" type="text" id="todoText" placeholder="Bir görev yazınız..." />
+</template>
+
+<script>
+
+export default{
+  data(){
+    return{
+      todoText:null,
+
+    };
+  },
+  methods:{
+    addNewTodo(){
+      this.$emit("add-todo",this.todoText);
+      this.todoText=null;
+    },
+  },
+};
+</script>
+
+TodoList:
+<template>
+  <ul>
+      <TodoListItem @delete-todo-item="$emit('delete-todo-item', $event)" v-for="todoItem in myData" :key="todoItem.id" :item="todoItem"/>
+  </ul>
+</template>
+<script>
+import TodoListItem from "@/components/TodoListItem.vue"
+export default{
+  props:[
+    "myData"
+  ],
+
+    components:{
+        TodoListItem,
+    }
+};
+</script>
+
+TodoListItem:
+
+<template>
+    <li class="d-flex justify-content-between align-items-center">
+      
+      <span>{{ item.text }}</span>
+      <button  @click="$emit('delete-todo-item', item)" class="sm red">Sil</button>
+    </li>
+</template>
+
+<script>
+
+
+export default{
+  props:["item"],
+  
+};
+
+</script>
+
+
+
+ResultBar:
+<template>
+    <small class="mt-2 d-flex justify-content-end green">{{ itemCount }} adet todo vardır</small>
+</template>
+
+<script>
+export default{
+    props:["itemCount",],
+}
+</script>
+
+
+
+Child'a props olarak Function göndermek:
+  App.vue:
+    <AddSection :addNewTodo="addNewTodo" @add-todo="addNewTodo"/>
+AddSection:
+<template>
+  <label for="todoText"></label>
+  <input v-model="todoText" @keydown.enter="addNewTodo(todoText)" type="text" id="todoText" placeholder="Bir görev yazınız..." />
+</template>
+
+<script>
+
+export default{
+  props:{
+    addNewTodo:{
+      type:Function,
+      required: true,
+
+    },
+
+  },
+  data(){
+    return{
+      todoText:null,
+
+    };
+  },
+  methods:{
+    
+  },
+};
+</script>
+
+
+
+İki Componentin birbirleriyle ilişkisi olduğunda birleştirmek
+
+Provide ve Inject
+
+Ana projede hepsini provide edip, ihtiyaç olduğunda inject etmek
