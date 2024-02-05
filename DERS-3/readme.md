@@ -261,7 +261,7 @@ export default {
 
 # Vue JS Dinamik Componentler
 
-*Dinamik components(bileşenler),kullanıcılara herhangi bir routing işlemi yapmadan birden fazla bileşen içerisinde geçiş yapmasına ve geçiş yaparken bilgilerin korunmasını sağlayan bileşenlerdir. *
+*Dinamik components(bileşenler),kullanıcılara herhangi bir routing işlemi yapmadan birden fazla bileşen içerisinde geçiş yapmasına ve geçiş yaparken bilgilerin korunmasını sağlayan bileşenlerdir.*
 
 *<KeepAlive> componenti, dinamik componentlerin içindeki verileri, componentler etkin olmadıklarında önbelleğe almak ve böylece durumlarının korunmasını sağlamak için kullanılır.*
 
