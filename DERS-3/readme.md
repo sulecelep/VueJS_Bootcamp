@@ -366,8 +366,7 @@ export default {
 
 # Axios ile Http İstekleri Atmak
 
-[Fake API olarak kullanacağımız json-server github reposu için tıklayınız](*https://github.com/typicode/json-server*
-)
+[Fake API olarak kullanacağımız json-server github reposu için tıklayınız](*https://github.com/typicode/json-server*)
 
 *Bilgisayara json-server paketini kurmamız gerekiyor:*
 ```
