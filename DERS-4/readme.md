@@ -357,3 +357,111 @@ export default store;
 
 </script>
 ````
+
+## Vuex Modules Yapısı
+
+*Burada index.js'deki store'u modullere ayırarak kullanım kolaylığı sağlanıyor.*
+
+### App.vue
+````html
+<template>
+  <p>
+    {{ $store.state.mainName }}
+  </p>
+
+  <p>
+    {{ $store.state.musteri.contactName }}
+  </p>
+
+  <pre>
+    {{musteriADI}}
+  </pre>
+</template>
+
+<script>
+import { mapGetters } from 'vuex';
+export default {
+  created(){
+    console.log(this.$store.getters["musteri/_contactName"]); //namespaced yaptığımız için 
+    console.log(this.$store);
+  },
+  computed:{
+    ...mapGetters({
+      musteriADI:"musteri/_contactName",
+    })
+  }
+}
+</script>
+
+````
+
+### index.js
+````js
+import { createStore } from "vuex";
+import contact from "./modules/contact"
+import taskmanager from "./modules/taskmanager"
+const store= createStore({
+    namespaced:true,
+    state:{
+        mainName:"kablosuzkedi"
+    },
+    mutations:{
+
+    },
+    modules:{
+        musteri:contact,
+        taskmanager,
+
+    }
+});
+
+export default store;
+
+````
+
+### contact.js modülü
+````js
+export default {
+    namespaced:true,
+
+  state: {
+    contactName: "puresol",
+    contactAddress: "Kanada",
+    propertyList: []
+  },
+  mutations: {
+    setItem(state, name) {
+      state.contactName = name;
+    },
+  },
+  getters:{
+    _contactName: state => state.contactName,
+    //_itemList: state=>state.propertyList,
+  }
+};
+
+
+````
+### taskmanager.js modülü
+````js
+/* bunlar birer module store değil o yüzden import createStore yapmadık */
+
+export default {
+    namespaced:true,
+
+    state:{
+        itemList:[{}],
+        userList:[{}],
+    },
+    mutations:{
+        setItem(state,item){
+            state.itemList.push(item);
+        },
+    },
+    getters:{
+        _itemList: state => state.itemList,
+    }
+}
+
+````
+
