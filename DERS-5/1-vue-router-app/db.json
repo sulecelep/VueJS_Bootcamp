@@ -1,0 +1,22 @@
+{
+  "bookmarks": [
+    {
+      "id": "43db",
+      "title": "kablosuz kedi",
+      "url": "https://www.kablosuzkedi.com",
+      "description": "Bu bir açıklamadır."
+    },
+    {
+      "id": "c754",
+      "title": "sule",
+      "url": "celep",
+      "description": "açıklama"
+    },
+    {
+      "id": "35a6",
+      "title": "levmont",
+      "url": "ilaç",
+      "description": "alerji"
+    }
+  ]
+}
