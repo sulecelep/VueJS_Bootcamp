@@ -1,0 +1,24 @@
+{
+  "users": [
+    {
+      "id": "e1b4",
+      "username": "sule",
+      "fullname": "Şule Celep",
+      "password": "682d0c21835b9cb5cbdbb71076c7846dccd42b44"
+    },
+    {
+      "id": "8392",
+      "username": "gokhan",
+      "fullname": "Gökhan Kandemir",
+      "password": "682d0c21835b9cb5cbdbb71076c7846dccd42b44"
+    },
+    {
+      "id": "9f2a",
+      "username": "tayfun",
+      "fullname": "Tayfun Erbilen",
+      "password": "682d0c21835b9cb5cbdbb71076c7846dccd42b44"
+    }
+  ],
+  "bookmarks": [],
+  "categories": []
+}
