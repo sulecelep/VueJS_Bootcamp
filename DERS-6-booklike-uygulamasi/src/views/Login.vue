@@ -32,9 +32,16 @@ export default {
       this.$appAxios.get(`/users?username=${this.userData.username}&password=${password}`)
       .then(login_response =>{
         console.log('login_response', login_response);
+        if(login_response?.data?.length > 0){
+          this.$store.commit("setUser",login_response?.data[0]);
+          this.$router.push({name:"HomePage"});
+        }else{
+          alert("Böyle bir kullanıcı bulunmamaktadır...");
+        }
+        
       })
-      .catch(e=> console.log('e', e))
-      .finally(()=>this.loader=false);
+      .catch(e=> console.log('e', e));
+      //.finally(()=>this.loader=false);
 
     }
   }
