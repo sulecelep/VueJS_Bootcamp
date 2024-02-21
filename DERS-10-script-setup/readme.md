@@ -303,19 +303,13 @@ _App.vue ana component, oddOrEven counter sayacını taşıyan child component. 
   <h3>{{ title }}</h3>
 
   <input type="text" v-model="title" />
-
   <button @click="inc">{{ counter }}</button>
-
   <hr />
-
   <oddOrEven :counter="counter" @odd-event="alertMe" />
-
   <hr />
-
   <h1>User App</h1>
 
   <input type="text" v-model="state.personal.name" />
-
   <input type="text" v-model="state.personal.lname" />
 
   {{ state.personal }}
@@ -325,35 +319,19 @@ _App.vue ana component, oddOrEven counter sayacını taşıyan child component. 
 ### App.vue script setup
 
 ```js
-<script setup>
 
 import  {ref, reactive,watch}  from  "vue";
-
 import oddOrEven from  "./components/oddOrEven.vue";
-
 import Utils from  "./composables/Utils.js";
-
-
 
 const  { title, counter, inc, alertMe }=Utils();
 
-
-
 // User App
-
-
-
 const state=  reactive({
-
-personal:{
-
-name:null,
-
-lname:null,
-
-
-
-},
+    personal:{
+    name:null,
+    lname:null,
+  },
 
 });
 
@@ -363,16 +341,16 @@ lname:null,
 
 watch(()  =>JSON.parse(JSON.stringify(state.personal)),  (newPersonal,oldPersonal)=>{
 
-console.log(oldPersonal);
+  console.log(oldPersonal);
 
-console.log(newPersonal);
+  console.log(newPersonal);
 
 })
 
 
 
 
-</script>
+
 ```
 
 ### oddOrEven.vue
@@ -388,20 +366,14 @@ console.log(newPersonal);
 ### oddOrEvent script setup
 
 ```js
-<script setup>
+
 
 import  { computed, watch }  from  "vue";
 
 const props =  defineProps({  counter: Number });
-
 const emit =  defineEmits(["odd-event"]);
-
-
-
 const result =  computed(()  =>  {
-
-return props.counter  %  2  ==  0  ?  "Çift"  :  "Tek";
-
+  return props.counter  %  2  ==  0  ?  "Çift"  :  "Tek";
 });
 
 
@@ -409,12 +381,9 @@ return props.counter  %  2  ==  0  ?  "Çift"  :  "Tek";
 //tek olduğunda event gönderelim
 
 watch(result,  (result)  =>  {
-
-if  (result ===  "Tek")  {
-
-emit("odd-event",  true);
-
-}
+  if  (result ===  "Tek")  {
+    emit("odd-event",  true);
+  }
 
 });
 
